@@ -1,0 +1,349 @@
+:root {
+    --primary-color: #ec1f55;
+    --text-color: #333;
+    --width-progress-running:0%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('assets/image/skyWithStar.jpg');
+    animation: changeBackgroundBody 3s ease forwards;
+    animation-delay: 3s;
+    background-size: 180px;
+    background-repeat: repeat;
+}
+
+@keyframes changeBackgroundBody {
+    from {
+        background-image: url('assets/image/skyWithStar.jpg');
+    }
+
+    to {
+        background-image: url('assets/image/cloudBackground.jpg');
+    }
+}
+
+html {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.player {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.player .icon-pause {
+    display: none;
+}
+
+.player.playing .icon-pause {
+    display: inline-block;
+}
+
+.player.playing .icon-play {
+    display: none;
+}
+
+.dashboard {
+    padding: 16px 16px 14px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 480px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+header h4 {
+    color: var(--primary-color);
+    font-size: 12px;
+}
+
+header h2 {
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+/* CD */
+.cd {
+    display: flex;
+    margin: auto;
+    width: 200px;
+}
+
+.cd-thumb {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    margin: auto;
+    animation: slideCd 8s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes slideCd {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Control */
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 18px 0 8px 0;
+}
+
+.control .btn {
+    text-align: center;
+    width: 47.2px;
+    color: #666;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.control .btn:hover {
+    background-color: #e1e1e1;
+}
+
+.control .btn.active {
+    color: var(--primary-color);
+}
+
+.control .btn-toggle-play {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    position: relative;
+}
+.toggle-play-running{
+    opacity: 0;
+    transform: scale(1.2);
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    border-top: 2px solid rgb(70,70,70);
+    border-bottom: 2px solid var(--primary-color);
+    animation: rotateTogglePlayRunning .8s linear infinite ;
+    transition: opacity .4s linear;
+}
+.toggle-play-running.active{
+    opacity: 1;
+}
+@keyframes rotateTogglePlayRunning{
+    from{
+        transform:scale(1.2) rotate(0deg);
+    }
+    to{
+        transform:scale(1.2) rotate(360deg);
+    }
+}
+.control .btn-toggle-play:hover {
+    background-color: var(--primary-color);
+}
+
+.progress {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    cursor: pointer;
+    position: relative;
+}
+.progress::before{
+    width:var(--width-progress-running);
+    position: absolute;
+    content: "";
+    height: 6px;
+    background-color: var(--primary-color);
+}
+.progress-container{
+    position: relative;
+}
+#progress-running{
+    opacity: .7;
+    left: 0;
+    top: 11.2px;
+    width: 0;
+    position: absolute;
+    height: 6px;
+    background-color: var(--primary-color);
+}
+
+.progress:hover {
+    border: 1px solid var(--primary-color);
+}
+
+.progress:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+}
+
+.progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Playist */
+.playist {
+    margin-top: 408px;
+    padding: 12px;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.song.active {
+    background-color: var(--primary-color);
+}
+
+.song:active {
+    opacity: .8;
+}
+
+.song.active .title,
+.song.active .author {
+    color: #fff;
+}
+
+.song.active .option-item {
+    background-color: #fff;
+}
+
+.song .thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-size: cover;
+    margin: 0 8px;
+}
+
+.song .body {
+    flex: 1;
+    padding: 0 16px;
+}
+
+.song .title {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.song .author {
+    font-size: 12px;
+    color: #999;
+}
+
+/* .song .option{
+      padding: 16px 8px;
+  } */
+.option-item {
+    background-color: #999;
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    border-radius: 50%;
+    animation: runningOptionItem linear 0s infinite alternate ;
+}
+.option-item.active{
+    animation-duration: .5s;
+}
+@keyframes runningOptionItem {
+    0% {
+        height: 5px;
+        border-radius: 5px;
+    }
+    50% {
+        height: 21px;
+        border-radius: 5px;
+    }
+    100% {
+        height: 5px;
+        border-radius: 5px;
+
+    }
+}
+
+.option-item:nth-child(1) {
+    animation-delay: 0s;
+    margin-right: -2px;
+}
+
+.option-item:nth-child(2) {
+    animation-delay: .2s;
+    margin-right: -2px;
+}
+
+.option-item:nth-child(3) {
+    animation-delay: .3s;
+}
+
+
+
+/*
+    Wing css
+  */
+.wing {
+    position: fixed;
+    background-image: url('assets/image/wing.gif');
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: 4s fadeOutWing ease;
+}
+
+.wing-left {
+    transform: translateX(-100%) translateY(-94%);
+}
+
+.wing-right {
+    transform: rotateY(180deg) translateX(-241%) translateY(-94%);
+}
+
+@keyframes fadeOutWing {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
