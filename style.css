@@ -60,6 +60,21 @@ html {
     max-width: 480px;
     border-bottom: 1px solid #ebebeb;
 }
+.volume-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.volume-container i{
+    color: var(--primary-color);
+    margin-right: 16px;
+}
+.volume-container .volume-muted{
+    display: none;
+}
+.volume{
+
+}
 
 /* Header */
 header {
@@ -214,7 +229,7 @@ header h2 {
 
 /* Playist */
 .playist {
-    margin-top: 408px;
+    margin-top: 420px;
     padding: 12px;
 }
 

@@ -7,6 +7,7 @@ const play_btn = document.querySelector('.btn-toggle-play');
 const player = document.querySelector('.player');
 const audio = document.querySelector('#audio');
 const inputRange = document.querySelector('#progress');
+const inputRangeVolume=document.querySelector('#volume')
 const heading = $('header h2');
 const cdThumb = $('.cd-thumb');
 const btn_repeat = $('.btn-repeat');
@@ -14,6 +15,8 @@ const btn_prev = $('.btn-prev');
 const btn_next = $('.btn-next');
 const btn_random = $('.btn-random');
 const toggle_play_running=$('.toggle-play-running');
+const volumeNormal=document.querySelector('.volume-normal');
+const volumeMuted=document.querySelector('.volume-muted');
 var arrayContainIndex = [];
 const app = {
     currentIndex: 0,
@@ -144,6 +147,17 @@ const app = {
             }
             inputRange.ontouchstart=function(){
                 checkInputMouseUp = false;
+            }
+            inputRangeVolume.oninput=function(){
+                if(inputRangeVolume.value==0){
+                    volumeMuted.style.display='inline-block';
+                    volumeNormal.style.display='none'
+                }
+                else{
+                    volumeMuted.style.display='none';
+                    volumeNormal.style.display='inline-block'
+                }
+                audio.volume=inputRangeVolume.value/100;
             }
             inputRange.oninput = function () {
                 document.documentElement.style.setProperty('--width-progress-running', inputRange.value +"%");
